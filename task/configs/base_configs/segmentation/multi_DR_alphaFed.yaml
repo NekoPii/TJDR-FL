@@ -1,0 +1,84 @@
+fed:
+    fed_mode: alphaFed
+    fed_params:
+        alpha: 0.9
+    seed: 1
+    run_seed: 1
+    init_seed: 1
+    gpu: 0
+    host: 127.0.0.1
+    port: 9293
+
+model:
+    model_name: resnet50_unet
+    model_mode: seg
+    ptr_weights: imagenet
+    amp: false
+
+    num_workers: 0
+    num_channels: 3
+    num_classes: 5
+
+optimizer:
+    type: SGD
+    lr: 1e-2
+    momentum: 0.9
+    weight_decay: 5e-4
+
+lr_schedule:
+    mode: cos
+    min_lr: 1e-5
+    iter_step: false
+
+dataset:
+    dataset_name: [DDR_seg,TJDR,IDRiD]
+    img_size: 1024
+
+    slide_inference:
+      slide_crop_size: 224
+      slide_stride: 112
+
+    data_augment: false
+
+    dataset_dir:
+        DDR_seg:
+            train: datas/DDR-seg/train+val/crop_contour_resize
+            test: datas/DDR-seg/test/crop_contour_resize
+        TJDR:
+            train: datas/TJDR/train
+            test: datas/TJDR/test
+        IDRiD:
+            train: datas/IDRiD/circle_crop_resize/train
+            test: datas/IDRiD/circle_crop_resize/test
+
+    ignore_label: 255
+
+client:
+    epoch: 1
+    batch_size: 8
+    eval_batch_size: 8
+    log_iter: 100
+
+    client_eval:
+        test:
+            num: 0
+
+edge:
+    epoch: 1
+    num_clients: 1
+    save_ckpt_epoch: 0
+
+    edge_eval:
+        test:
+            num: 0
+            metric: [mIoU,mDice]
+
+cloud:
+    epoch: 2000
+    num_edges: 3
+    save_ckpt_epoch: 0
+
+    cloud_eval:
+        test:
+            num: 100
+            metric: [mIoU,mDice]

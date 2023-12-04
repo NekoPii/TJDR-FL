@@ -1,0 +1,78 @@
+fed:
+    fed_mode: FedAvg
+    seed: 1
+    run_seed: 1
+    init_seed: 1
+    gpu: 0
+    host: 127.0.0.1
+    port: 9191
+
+model:
+    model_name: resnet50
+    model_mode: cnn
+    ptr_weights: imagenet
+    amp: true
+
+    num_workers: 0
+    num_channels: 3
+    num_classes: 6
+
+optimizer:
+    type: Adam
+    lr: 1e-3
+    momentum: 0.9
+    weight_decay: 5e-4
+
+lr_schedule:
+    mode: poly
+    min_lr: 1e-7
+    iter_step: false
+
+dataset:
+    dataset_name: DDR_grading
+    img_size: 512
+
+    data_augment: false
+
+    non_iid:
+        enable: false
+        gamma: 0.8
+
+    dataset_dir:
+        train: datas/DDR-grading/crop_contour_resize/train+val
+        test: datas/DDR-grading/crop_contour_resize/test
+
+client:
+    epoch: 1 # for fedavg
+#    epoch: 200 # for c1-c4
+    batch_size: 64
+    eval_batch_size: 64
+    log_iter: 100
+
+    client_eval:
+        test:
+            num: 0 # for fedavg
+#            num: 5 # for c1-c4
+            metric: mF1
+
+edge:
+    epoch: 200 # for fedavg
+#    epoch: 1   # for c1-c4
+    num_clients: 4
+    save_ckpt_epoch: 0
+
+    edge_eval:
+        test:
+            num: 5 # for fedavg
+#            num: 0 # for c1-c4
+            metric: mF1
+
+cloud:
+    epoch: 1
+    num_edges: 1
+    save_ckpt_epoch: 0
+
+    cloud_eval:
+        test:
+            num: 0
+            metric: mF1
