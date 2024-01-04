@@ -57,7 +57,7 @@ Args:
 --port                 : Cloud port, default is initialized by 'configs/base_config.yaml', Optional
 ```
 
-## Our TJDR dataset is available at [here](https://tongjieducn-my.sharepoint.com/:f:/g/personal/mjx_tongji_edu_cn/EkpOgfHgyS5Mo-cKcUheogoBsZU2wPMdIHWMgIWN9p2sag?e=Ye8SOp).
+## Our TJDR dataset is available at [here](https://github.com/NekoPii/TJDR).
 
 ## System information
 
