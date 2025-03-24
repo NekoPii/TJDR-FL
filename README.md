@@ -63,3 +63,15 @@ Args:
 
 We train our model on 6 NVIDIA GeForce RTX 3090 GPUs with a 24GB memory per-card. Testing is conducted on the same
 machines.
+
+## Citation:
+If you find this dataset is useful to your research, please cite our papers.
+```text
+@article{mao2024comprehensive,
+  title={A Comprehensive Federated Learning Framework for Diabetic Retinopathy Grading and Lesion Segmentation},
+  author={Mao, Jingxin and Ma, Xiaoyu and Bi, Yanlong and Zhang, Rongqing},
+  journal={IEEE Transactions on Big Data},
+  year={2024},
+  publisher={IEEE}
+}
+```
